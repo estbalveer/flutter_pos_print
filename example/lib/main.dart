@@ -18,7 +18,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-  final _flutterPosPrintPlugin = FlutterPosPrint();
   int connected = 0;
 
   @override
@@ -30,7 +29,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     String platformVersion;
     try {
-      platformVersion = await _flutterPosPrintPlugin.getPlatformVersion() ??
+      platformVersion = await FlutterPosPrint.getPlatformVersion() ??
           'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
@@ -46,7 +45,7 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       connected = 1;
     });
-    var success = await _flutterPosPrintPlugin.connectBT("00:11:22:33:44:55");
+    var success = await FlutterPosPrint.connectBT("00:11:22:33:44:55");
     print("success $success");
     setState(() {
       connected = 2;
@@ -54,7 +53,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   printer() {
-    _flutterPosPrintPlugin.printInvoice(
+    FlutterPosPrint.printInvoice(
         true,
         false,
         "12-12-24",
@@ -87,9 +86,11 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               Text('Running on: $_platformVersion\n'),
-              ElevatedButton(onPressed: () {
-                Permission.bluetoothConnect.request();
-              }, child: Text("Permission")),
+              ElevatedButton(
+                  onPressed: () {
+                    Permission.bluetoothConnect.request();
+                  },
+                  child: Text("Permission")),
               ElevatedButton(
                   onPressed: () {
                     print("connect printed");

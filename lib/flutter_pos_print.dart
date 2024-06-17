@@ -10,23 +10,23 @@ import 'dart:typed_data';
 import 'flutter_pos_print_platform_interface.dart';
 
 class FlutterPosPrint {
-  Future<String?> getPlatformVersion() {
+  static Future<String?> getPlatformVersion() {
     return FlutterPosPrintPlatform.instance.getPlatformVersion();
   }
 
-  Future<bool?> connectBT(String address) {
+  static Future<bool?> connectBT(String address) {
     return FlutterPosPrintPlatform.instance.connectBT(address);
   }
 
-  Future<bool?> autoConnectBT(String address) {
+  static Future<bool?> autoConnectBT(String address) {
     return FlutterPosPrintPlatform.instance.autoConnectBT(address);
   }
 
-  Future<Uint8List?> generateQrCode(String data) {
+  static Future<Uint8List?> generateQrCode(String data) {
     return FlutterPosPrintPlatform.instance.generateQrCode(data);
   }
 
-  Future<bool?> printTestInvoice(
+  static Future<bool?> printTestInvoice(
     bool isEnLang,
     String heading,
     String subHeading,
@@ -46,7 +46,7 @@ class FlutterPosPrint {
     );
   }
 
-  Future<bool?> printInvoice(
+  static Future<bool?> printInvoice(
     bool isEnLang,
     bool qrEnable,
     String date,
@@ -77,7 +77,7 @@ class FlutterPosPrint {
         logo);
   }
 
-  Future<bool?> printCompanyInvoice(
+  static Future<bool?> printCompanyInvoice(
     bool isEnLang,
     String voucherCode,
     String id,
@@ -105,7 +105,7 @@ class FlutterPosPrint {
     );
   }
 
-  Future<bool?> printDailyReport(
+  static Future<bool?> printDailyReport(
     bool isEnLang,
     String fromDate,
     String toDate,
