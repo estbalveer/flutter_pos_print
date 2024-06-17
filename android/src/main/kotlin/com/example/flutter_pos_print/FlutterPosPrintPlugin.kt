@@ -321,27 +321,27 @@ class FlutterPosPrintPlugin : FlutterPlugin, MethodCallHandler {
         val advertise: List<String> = separateWordsIntoLines(advertiseText);
         val appLogo = pointLogo;
         var logoBitmap: Bitmap? = null; // 200 * 75
-//        var brandBitmap: Bitmap? = null; // 75 * 75
-//        try {
-//            logoBitmap = BitmapFactory.decodeStream(flutterPluginBinding.applicationContext.resources.assets.open(appLogo));
-//            if (!logo.isNullOrEmpty()) {
-//                brandBitmap = loadImageFromURL(logo)?.let {
-//                    Bitmap.createScaledBitmap(it, 400, 75, true)
-//                }
-//            }
-//        } catch (e: IOException) {
-//            e.printStackTrace();
-//            return false
-//        }
+        var brandBitmap: Bitmap? = null; // 75 * 75
+        try {
+            logoBitmap = BitmapFactory.decodeStream(flutterPluginBinding.applicationContext.resources.assets.open(appLogo));
+            if (!logo.isNullOrEmpty()) {
+                brandBitmap = loadImageFromURL(logo)?.let {
+                    Bitmap.createScaledBitmap(it, 400, 75, true)
+                }
+            }
+        } catch (e: IOException) {
+            e.printStackTrace();
+            return false
+        }
         // PRINTER SETUP
         mPrinter.init();
         mPrinter.setEncoding("utf-8");
         // logo
-//        if (brandBitmap != null) {
-//            sdkPrintImage(mPrinter, brandBitmap)
-//        } else {
-//            sdkPrintImage(mPrinter, logoBitmap)
-//        }
+        if (brandBitmap != null) {
+            sdkPrintImage(mPrinter, brandBitmap)
+        } else {
+            sdkPrintImage(mPrinter, logoBitmap)
+        }
         // date - time
         val dateTimeString: String = if (isEnLang) {
             "Date: $date       Time: $time"
