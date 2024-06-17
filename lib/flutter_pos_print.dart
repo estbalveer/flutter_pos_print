@@ -15,7 +15,7 @@ class FlutterPosPrint {
   }
 
   Future<bool?> connectBT(String address) {
-    return FlutterPosPrintPlatform.instance.autoConnectBT(address);
+    return FlutterPosPrintPlatform.instance.connectBT(address);
   }
 
   Future<bool?> autoConnectBT(String address) {
